@@ -7,6 +7,7 @@
 <li style='font-size:2rem'><a href='#문제-2'>문제 2</a></li>
 <li style='font-size:2rem'><a href='#문제-3'>문제 3</a></li>
 <li style='font-size:2rem'><a href='#문제-4'>문제 4</a></li>
+<li style='font-size:2rem'><a href='#기타'>기타</a></li>
 </ol>
 
 <hr/>
@@ -1050,3 +1051,47 @@ export default Dropdown;
 ```
 
 > 선택값이 변경되면 현재 페이지를 1번으로 변경하고 변경된 선택값에 따라 데이터를 슬라이싱하여 보여줍니다.
+
+## 기타
+
+> 마지막으로 배포를 위한 변경사항이 있습니다.
+
+```js
+// src > App.js
+
+import Dropdown from './components/Dropdown';
+import Pagination from './components/Pagination';
+import Table from './components/Table';
+import dataJson from './data.json?url';
+
+class App {
+  constructor($app) {
+    this.$app = $app;
+
+    this.render();
+  }
+
+  async render() {
+    try {
+      // const res = await fetch('/src/data.json');
+      const res = await fetch(dataJson);
+      if (res.ok) {
+        /** @type {{name:string, title:string, email:string, role:string}[]} */
+        const data = await res.json();
+        new Table(data);
+        new Pagination(data);
+        const options = [5, 15];
+        new Dropdown(data, options);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+}
+
+export default App;
+```
+
+> `import dataJson from './data.json?url';` 구문을 추가해 github pages 에 배포시 `data.json` 파일을 찾지 못하는 경로 문제를 해결하였습니다.
+>
+> `?url` 접미사는 `vite` 에서 json파일을 url로 가져오기 위한 방법입니다.

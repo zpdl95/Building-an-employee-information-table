@@ -56,38 +56,3 @@ export const displayTableData = (data) => {
   }
   return tr;
 };
-
-// import { createTableBody, createTableHead } from './TableHandler/createTable';
-
-// class Table {
-//   /**
-//    * 테이블 생성
-//    * @constructor
-//    * @param {{name:string, title:string, email:string, role:string}[]} data
-//    * @param {()=>number} getDropdownNum
-//    * @param {()=>number} getPageNum
-//    */
-//   constructor(data, getDropdownNum, getPageNum) {
-//     /** @type {{name:string, title:string, email:string, role:string}[]} */
-//     this.table = document.createElement('table');
-//     this.data = data;
-//     this.getDropdownNum = getDropdownNum;
-//     this.getPageNum = getPageNum;
-
-//     this.render();
-//   }
-
-//   render() {
-//     const tableColTitleList = Object.keys(this.data[0]);
-//     const tableContainer = document.getElementById('table');
-//     tableContainer.appendChild(this.table);
-//     createTableHead(this.table, tableColTitleList);
-//     createTableBody(
-//       this.getDropdownNum(),
-//       this.getPageNum(),
-//       this.table,
-//       this.data
-//     );
-//   }
-// }
-// export default Table;
